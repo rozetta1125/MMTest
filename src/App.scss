@@ -1,0 +1,84 @@
+@import './styles/mixin';
+
+.App {
+  text-align: center;
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+#limit{
+  margin:20px 0;
+  font-size: 1.2rem;
+  select{
+    font-size: 1rem;
+  }
+}
+
+#Trending-Container{
+  // display:flex;
+  // flex-wrap:wrap;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  .SingleTrending{
+    // flex: 1 0 21%;
+    margin:10px;
+    .fixed-img-wrapper{
+      height: 200px;
+      padding:10px 10px 20px 10px;
+      background:#fff;
+      border-radius: 5px;
+      img{
+        cursor: pointer;
+        width: 100%;
+        height: 100%;
+      }
+    }
+    .origin-img-wrapper{
+      display: none;
+    }
+    .user{
+      display: flex;
+      margin: 8px;
+      .user-img{
+        border-radius: 50%;
+        overflow: hidden;
+        width: 24px;
+        height: 24px;
+        margin-right: 10px;
+        img{
+          width: 100%;
+          height: 100%;
+        }
+      }
+      p{
+        padding: 0;
+        margin:0;
+      }
+    }
+    &.active{
+      .origin-img-wrapper{
+        display: block;
+        position: fixed;
+        left:0;
+        top:0;
+        width:100vw;
+        height: 100vh;
+        background: rgba(0,0,0,.5);
+        img{
+          cursor: pointer;
+          position: absolute;
+          transform: translate(-50%,-50%);
+          top:50%;
+          left:50%;
+        }
+      }
+    }
+  }
+  @include Tablet{
+    grid-template-columns: repeat(3, 1fr);
+  }
+  @include Mobile{
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

@@ -1,23 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import './App.scss';
+import React, {useState} from 'react';
+import useFetch from './services/useFetch';
+import Spinner from "./components/Spinner";
+import TrendingPost from './components/TrendingPost';
 
 function App() {
+  const [limit,setLimit] = useState(20);
+
+  const { data:trending, loading, error } = useFetch(
+    `&limit=${limit}`
+  );
+
+  if (error) throw error;
+  if (loading) return <Spinner />;
+  if (trending.data.length === 0) return <div>There is no Data</div>;
+
+  const filteredTrending = trending;
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+      <div id="limit">
+        <label>Display: </label>
+        <select 
+          value={limit} 
+          onChange={(e)=>setLimit(e.target.value)}
         >
-          Learn React
-        </a>
-      </header>
+          <option value="20">20</option>
+          <option value="10">10</option>
+          <option value="5">5</option>
+        </select>
+      </div>
+      <section id="Trending-Container">
+        {filteredTrending.data.map(TrendingPost)}
+      </section>
     </div>
   );
 }
