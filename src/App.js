@@ -31,7 +31,9 @@ function App() {
         </select>
       </div>
       <section id="Trending-Container">
-        {filteredTrending.data.map(TrendingPost)}
+        <div className="Trending-Grid">
+          {filteredTrending.data.map(TrendingPost)}
+        </div>
       </section>
     </div>
   );

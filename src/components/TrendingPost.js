@@ -1,4 +1,5 @@
 import React from 'react';
+import './TrendingPost.scss';
 
 export function TrendingPost(p){
 
@@ -20,12 +21,6 @@ export function TrendingPost(p){
           alt={p.title} 
         />
       </div>
-      <div className="origin-img-wrapper">
-        <img onClick={onCloseClick}
-          src={p.images.original.url} 
-          alt={p.title} 
-        />
-      </div>
       {p.user && 
         <div className="user">
           <div className="user-img">
@@ -34,6 +29,20 @@ export function TrendingPost(p){
           <p>{p.username}</p>
         </div>
       }
+      <div className="origin-img-wrapper" >
+        <div className="origin-img-layer" onClick={onCloseClick}>
+          <div className="origin-img-content">
+            <img 
+              src={p.images.original.url}
+              alt={p.title}
+            />
+            <p>{p.title}</p>
+          </div>
+        </div>
+        <button className="origin-img-close-button" onClick={onCloseClick}>
+          <div className="Xshape"></div>
+        </button>
+      </div>
     </div>
   )
 }
