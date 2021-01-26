@@ -18,7 +18,7 @@ export default function useFetch(limit) {
           const json = await response.json();
           if(isMounted.current) {
             setData(json);
-            // console.log(json);
+            console.log(json);
           }
         } else {
           throw response;

@@ -17,7 +17,7 @@ export function TrendingPost(p){
       <div className="fixed-img-wrapper">
         <img 
           onClick={onImgClick}
-          src={p.images.fixed_height_small.url} 
+          src={p.images.downsized.url} 
           alt={p.title} 
         />
       </div>
@@ -33,7 +33,7 @@ export function TrendingPost(p){
         <div className="origin-img-layer" onClick={onCloseClick}>
           <div className="origin-img-content">
             <img 
-              src={p.images.original.url}
+              src={p.images.downsized.url}
               alt={p.title}
             />
             <p>{p.title}</p>
